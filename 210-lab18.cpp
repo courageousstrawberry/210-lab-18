@@ -9,6 +9,7 @@ struct Node {
 };
 
 void addToTail(Node *&, Node *);
+void addToHead(Node *&, Node *);
 
 int main() {
     int choice = 0;
@@ -21,10 +22,14 @@ int main() {
     cout << "\t[2] New nodes are added at the tail of the linked list." << endl;
     cout << "Choice: ";
     cin >> choice;
+    while (choice != 1 && choice !=2){
+        cout << "Error Invalid input. Enter 1 or 2: ";
+        cin >> choice;
+    }
     
     while (repeat == 'Y') {
         current = new Node;
-        
+
         cout << "Enter review rating 0-5: ";
         cin >> current->rating;
         cin.ignore();
@@ -32,7 +37,10 @@ int main() {
         getline(cin, current->comment);
         current->next = nullptr;
 
-        if (choice == 2) {
+        if (choice == 1) {
+            addToHead(head, current);
+        }
+        else if (choice == 2) {
             addToTail(head, current);
         }
         cout << "Enter another review? Y/N: ";
@@ -62,4 +70,14 @@ void addToTail(Node *&head, Node *add){
         temp->next = add;
     }
     add->next = nullptr;
+}
+
+void addToHead(Node *&head, Node *add){
+    if (!head){
+        head = add;
+    }
+    else {
+        add->next = head;
+        head = add;
+    }
 }
