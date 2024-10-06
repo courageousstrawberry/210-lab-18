@@ -8,12 +8,12 @@ struct Node {
     Node* next;
 };
 
-void addToTail(Node *, Node);
+void addToTail(Node *, Node *);
 
 int main() {
     int choice = 0;
     Node *head = nullptr;
-    Node *current = nullptr;
+    Node *current = new Node;
 
     cout << "Which linked list method should we use?" << endl;
     cout << "\t[1] New nodes are added at the head of the linked list." << endl;
@@ -26,7 +26,10 @@ int main() {
     cout << "Enter review comments: ";
     cin >> current->comment;
 
+    addToTail(head, current);
 
+    current = head; 
+    cout << "Review #1:" << current->rating << ", " << current->comment;
     return 0;
 }
 
@@ -37,6 +40,10 @@ void addToTail(Node *head, Node *add){
         head->next = nullptr;
     }
     else {
-        
+        Node *current = head;
+        while(current->next) {
+            current = current->next;
+        }
+        current->next = add;
     }
 }
