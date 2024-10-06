@@ -32,7 +32,12 @@ int main() {
         current = new Node;
 
         cout << "Enter review rating 0-5: ";
-        cin >> current->rating;
+        while (!(cin >> current->rating)|| current->rating < 0 || current->rating > 5){
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+            cout << "Error Invalid input. Enter 1 or 2: ";
+        }
+
         cin.ignore();
         cout << "Enter review comments: ";
         getline(cin, current->comment);
