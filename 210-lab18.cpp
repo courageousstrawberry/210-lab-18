@@ -63,8 +63,8 @@ int main() {
     int count = 1;
     current = head;
     cout << "\nOutputting all reviews:" << endl;
-    while(current->next) {
-        cout << "\t> Review #" << count << ":" << current->rating << ": " << current->comment << endl;
+    while(current) {
+        cout << "\t> Review #" << count << ": " << current->rating << ": " << current->comment << endl;
         count++;
         current = current->next;
     }
@@ -101,9 +101,10 @@ double calcAverage(Node *&head) {
     Node *current = head;
     double total = 0;
     int count = 0;
-    while(current->next) {
+    while(current) {
         total += current->rating;
         count++;
+        current = current->next;
     }
     return (total/count);
 }
