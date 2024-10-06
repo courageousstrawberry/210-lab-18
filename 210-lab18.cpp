@@ -11,6 +11,7 @@ struct Node {
 
 void addToTail(Node *&, Node *);
 void addToHead(Node *&, Node *);
+double calcAverage(Node *&);
 
 int main() {
     int choice = 0;
@@ -59,8 +60,16 @@ int main() {
         }
     }
 
-    current = head; 
-    cout << "Review #1:" << current->rating << ", " << current->comment;
+    int count = 1;
+    current = head;
+    cout << "\nOutputting all reviews:" << endl;
+    while(current->next) {
+        cout << "\t> Review #" << count << ":" << current->rating << ": " << current->comment << endl;
+        count++;
+        current = current->next;
+    }
+    cout << "\t> Average: " << calcAverage(head);
+
     return 0;
 }
 
@@ -86,4 +95,15 @@ void addToHead(Node *&head, Node *add){
         add->next = head;
         head = add;
     }
+}
+
+double calcAverage(Node *&head) {
+    Node *current = head;
+    double total = 0;
+    int count = 0;
+    while(current->next) {
+        total += current->rating;
+        count++;
+    }
+    return (total/count);
 }
