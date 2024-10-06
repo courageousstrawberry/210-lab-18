@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -21,10 +22,10 @@ int main() {
     cout << "\t[1] New nodes are added at the head of the linked list." << endl;
     cout << "\t[2] New nodes are added at the tail of the linked list." << endl;
     cout << "Choice: ";
-    cin >> choice;
-    while (choice != 1 && choice !=2){
+    while (!(cin >> choice)|| (choice != 1 && choice !=2)){
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
         cout << "Error Invalid input. Enter 1 or 2: ";
-        cin >> choice;
     }
     
     while (repeat == 'Y') {
