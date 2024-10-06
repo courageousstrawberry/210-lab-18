@@ -14,7 +14,7 @@ int main() {
     int choice = 0;
     char repeat = 'Y';
     Node *head = nullptr;
-    Node *current = new Node;
+    Node *current = nullptr;
 
     cout << "Which linked list method should we use?" << endl;
     cout << "\t[1] New nodes are added at the head of the linked list." << endl;
@@ -23,6 +23,8 @@ int main() {
     cin >> choice;
     
     while (repeat == 'Y') {
+        current = new Node;
+        
         cout << "Enter review rating 0-5: ";
         cin >> current->rating;
         cin.ignore();
@@ -35,11 +37,11 @@ int main() {
         }
         cout << "Enter another review? Y/N: ";
         cin >> repeat;
-        toupper(repeat);
-        while (repeat != 'Y' || repeat != 'N') {
+        repeat = toupper(repeat);
+        while (repeat != 'Y' && repeat != 'N') {
             cout << "Error! Please enter Y or N." << endl;
             cin >> repeat;
-            toupper(repeat);
+            repeat = toupper(repeat);
         }
     }
 
